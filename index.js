@@ -149,12 +149,12 @@ function collectParent(el, tagName) {
 }
 
 // Collector
-function collectEntries(form, notDisabled) {
+function collectEntries(form, disabled) {
 
     return []
 
         // input elements
-        .concat(Array.from(form.querySelectorAll(`input${notDisabled ? `:not([disabled])` : ``}:not([type=submit])`)).map(el => {
+        .concat(Array.from(form.querySelectorAll(`input${disabled ? `` : `:not([disabled])`}:not([type=submit])`)).map(el => {
 
             let entry = {name: el.name, value: el.value};
 
@@ -185,19 +185,19 @@ function collectEntries(form, notDisabled) {
         }))
 
         // select elements
-        .concat(Array.from(form.querySelectorAll(`select${notDisabled ? `:not([disabled])` : ``}:not([multiple])`)).map(el => {
+        .concat(Array.from(form.querySelectorAll(`select${disabled ? `` : `:not([disabled])`}:not([multiple])`)).map(el => {
 
             return {name: el.name, value: el.value};
         }))
 
         // select multiple elements
-        .concat(Array.from(form.querySelectorAll(`select${notDisabled ? `:not([disabled])` : ``}[multiple] option[selected]`)).map(el => {
+        .concat(Array.from(form.querySelectorAll(`select${disabled ? `` : `:not([disabled])`}[multiple] option[selected]`)).map(el => {
 
             return {name: collectParent(el, 'select').name, value: el.value};
         }))
 
         // textarea elements
-        .concat(Array.from(form.querySelectorAll(`textarea${notDisabled ? `:not([disabled])` : ``}`)).map(el => {
+        .concat(Array.from(form.querySelectorAll(`textarea${disabled ? `` : `:not([disabled])`}`)).map(el => {
 
             return {name: el.name, value: el.value};
         }))
@@ -207,9 +207,9 @@ function collectEntries(form, notDisabled) {
 }
 
 // Encoder
-function JSONEncode(form, notDisabled) {
+function JSONEncode(form, disabled) {
 
-    let entries = collectEntries(form, notDisabled),
+    let entries = collectEntries(form, disabled),
         result  = {};
 
     entries.forEach(entry => {
