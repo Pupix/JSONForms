@@ -1,21 +1,12 @@
 {
   "name": "html-json-forms",
-  "version": "0.0.2",
-  "description": "submit html forms as json",
-  "main": "lib/json-forms.js",
-  "scripts": {
-    "test": "open test/runners/index.html"
-  },
+  "version": "1.0.0",
+  "description": "Parse html forms as json",
   "keywords": [
-    "jquery",
     "html",
     "json",
     "forms"
   ],
-  "author": "Cezary Wojtkowski",
-  "license": "MIT",
-  "devDependencies": {
-    "uglify-js": "^2.4.16",
-    "webpack": "^1.5.3"
-  }
+  "author": "Robert Manolea",
+  "license": "MIT"
 }
